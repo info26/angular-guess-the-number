@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+<div class="container">
+	<h2>Guess the Number !</h2>
+	<p class="well lead">Guess the computer generated random number between 1 and 1000.</p>
+	<label>Your Guess: </label>
+	<!--	<input class="form-control" type="number" [value]="guess" (input)="guess = $event.target.value" />
+		<button (click)="verifyGuess($event)" class="btn btn-primary">Verify</button>
+		<button (click)="initializeGame(1)" class="btn btn-warning">Restart</button>-->
+    <app-guess-form (newGuess)="handleGuess($event)"></app-guess-form>
+	<div>
+		<p *ngIf="deviation<0" class="alert alert-warning">Your guess is higher.</p>
+		<p *ngIf="deviation>0" class="alert alert-warning">Your guess is lower.</p>
+		<p *ngIf="deviation===0" class="alert alert-success">Yes! That's it.</p>
+	</div>
+	<p class="text-info">No of guesses :
+		<span class="badge badge-success">{{noOfTries}}</span>
+	</p>
+  <app-guess-list #guesslist></app-guess-list>
+</div>

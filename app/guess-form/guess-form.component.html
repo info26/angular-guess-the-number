@@ -1,0 +1,26 @@
+
+
+<form (ngSubmit)="onSubmit()" [formGroup]="guessForm">
+	<div class="form-group">
+		<label for="guess">Guess</label>
+		<input type="text" class="form-control" id="guess" formControlName="guessControl" autocomplete="off">
+  </div>
+
+		<button type="submit" class="btn btn-success" [disabled]="!guessForm.valid">Submit</button>
+		<div class="alert alert-danger" [hidden]="guessForm.valid || guessForm.pristine">
+			<svg class="bi bi-exclamation-circle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+				xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z"
+					clip-rule="evenodd" />
+				<path
+					d="M7.002 11a1 1 0 112 0 1 1 0 01-2 0zM7.1 4.995a.905.905 0 111.8 0l-.35 3.507a.552.552 0 01-1.1 0L7.1 4.995z" />
+			</svg>
+			Oops! Please fix the following errors:
+			<hr>
+			<ul>
+				<li *ngIf="guessForm.controls.guessControl.errors?.required">Please fill in the guess.</li>
+				<li *ngIf="guessForm.controls.guessControl.errors?.pattern">Only numbers are allowed in the field. </li>
+        <li *ngIf="guessForm.controls.guessControl.errors?.alreadyGuessed">You have already entered this.  </li>
+			</ul>
+		</div>
+</form>
